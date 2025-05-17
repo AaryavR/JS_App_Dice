@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Random Number Generator</title>
+        <style>
+            body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            }
+            #number {
+            font-size: 4em;
+            margin: 20px 0;
+            }
+            button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="number">0</div>
+        <button id="toggleBtn">Start/Stop</button>
+
+        <script>
+            const numberDisplay = document.getElementById('number');
+            const button = document.getElementById('toggleBtn');
+
+            let intervalId = null;
+            let clickCount = 0;
+
+            function generateRandomNumber() {
+            const rand = Math.floor(Math.random() * 1000);
+            numberDisplay.textContent = rand;
+            }
+
+            button.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount % 2 === 1) {
+                clearInterval(intervalId);
+                intervalId = null;
+            } else {
+                intervalId = setInterval(generateRandomNumber, 100);
+            }
+            });
+        </script>
+
+    </body>
+</html>
